@@ -13,6 +13,8 @@ import java.util.zip.ZipFile;
  */
 public class ClueDocumentApp {
     public static void main(String[] args) throws IOException {
+        System.setProperty("file.encoding", "UTF-8"); // ESSENTIAL!!!!
+
         String dir = "/home/dietz/kbbridge/code/jjd-ede/queripidia/data/documentdump/query-201/";
         traverseDirectory(dir);
 
