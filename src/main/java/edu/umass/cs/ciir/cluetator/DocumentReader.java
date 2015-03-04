@@ -29,9 +29,29 @@ public class DocumentReader {
         return true;
     }
 
+    private static String[] mysplit(String line, String substring, int numEntries)  {
+        int beginOffset = 0;
+        int offset = 0;
+        String[]  result = new String[numEntries];
+
+        for(int i = 0; i < numEntries && offset != -1; i++){
+            offset = line.indexOf(substring, beginOffset);
+            if(offset == -1) offset = line.length();
+            String chunk = line.substring(beginOffset, offset);
+            result[i] = chunk;
+
+            beginOffset = offset + substring.length();
+        }
+
+        return result;
+    }
+
     public static ClueToken lineToClueToken(String line){
-        String[] chunks = line.split("\\t\\t");
-        if(chunks.length<2) throw new RuntimeException("wrong format got \""+line+"\"");
+//        String[] chunks = line.split("\\t\\t");
+        String[] chunks = mysplit(line, "\t\t",7);
+        if(chunks.length<2) {
+            throw new RuntimeException("wrong format got \""+line+"\"");
+        }
 
         if(noEntityAnnotation(chunks)) {
             return new ClueToken(JSONUtil.unescape(chunks[0]), JSONUtil.unescape(chunks[1]));
