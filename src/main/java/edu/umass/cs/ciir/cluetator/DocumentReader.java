@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//import static edu.umass.cs.ciir.cluetator.JSONStringEncoding.unescape;
+import static edu.umass.cs.ciir.cluetator.NewlineEncoding.unescape;
+
 /**
  * User: dietz
  * Date: 2/27/15
@@ -54,7 +57,7 @@ public class DocumentReader {
         }
 
         if(noEntityAnnotation(chunks)) {
-            return new ClueToken(JSONUtil.unescape(chunks[0]), JSONUtil.unescape(chunks[1]));
+            return new ClueToken(unescape(chunks[0]), unescape(chunks[1]));
         } else {
 
             List<String>[] chunkChunks = new List[5];
@@ -62,13 +65,13 @@ public class DocumentReader {
                 String[] innerChunks = chunks[i].split("\\t");
                 ArrayList<String> innerChunkList = new ArrayList<String>(innerChunks.length);
                 for(String str:innerChunks) {
-                    innerChunkList.add(JSONUtil.unescape(str));
+                    innerChunkList.add(unescape(str));
                 }
                 chunkChunks[i-2] = innerChunkList;
             }
 
 
-            return new ClueToken(JSONUtil.unescape(chunks[0]), JSONUtil.unescape(chunks[1]),
+            return new ClueToken(unescape(chunks[0]), unescape(chunks[1]),
                     chunkChunks[0], chunkChunks[1], chunkChunks[2], chunkChunks[3], chunkChunks[4]
                     );
         }

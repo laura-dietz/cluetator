@@ -16,11 +16,11 @@ public class ClueDocumentApp {
         System.setProperty("file.encoding", "UTF-8"); // ESSENTIAL!!!!
 
         String dir = "/home/dietz/kbbridge/code/jjd-ede/queripidia/data/documentdump/query-201/";
-//        traverseDirectory(dir);
+        traverseDirectory(dir);
 
 
         String zipFile = "/home/dietz/Dropbox/trec-web-document-dump/doc-tab-dump-query-202.zip";
-        traverseZipFile(zipFile);
+//        traverseZipFile(zipFile);
     }
 
     private static void traverseDirectory(String dir) throws IOException {

@@ -3,8 +3,8 @@ package edu.umass.cs.ciir.cluetator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static edu.umass.cs.ciir.cluetator.JSONUtil.escape;
-import static edu.umass.cs.ciir.cluetator.JSONUtil.unescape;
+import static edu.umass.cs.ciir.cluetator.JSONStringEncoding.escape;
+import static edu.umass.cs.ciir.cluetator.JSONStringEncoding.unescape;
 
 public class JSONUtilTest {
 

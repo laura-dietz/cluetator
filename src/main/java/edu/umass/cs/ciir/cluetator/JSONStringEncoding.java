@@ -4,7 +4,7 @@ package edu.umass.cs.ciir.cluetator;
 /**
  * JSON-style string escaping of newlines and unicode characters
  */
-public class JSONUtil {
+public class JSONStringEncoding {
     public static String escape(String input) {
         StringBuilder output = new StringBuilder();
 
