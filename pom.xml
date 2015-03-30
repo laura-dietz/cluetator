@@ -4,7 +4,7 @@
     <groupId>edu.umass.ciir</groupId>
     <artifactId>cluetator</artifactId>
     <properties>
-        <scala.version>2.10.2</scala.version>
+        <scala.version>2.11.6</scala.version>
         <cluetator.version>2.10.2</cluetator.version>
     </properties>
     <version>${cluetator.version}</version>
