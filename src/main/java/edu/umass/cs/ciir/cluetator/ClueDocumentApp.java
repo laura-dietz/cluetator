@@ -79,6 +79,7 @@ public class ClueDocumentApp {
 
         int count = 20;
         for(ClueToken t : tokens){
+            if(t.isStartOfSentence()) System.out.println("\n\n");
 
             if(t.hasEntityAnnotation()){
                 System.out.print("  [");
@@ -90,7 +91,7 @@ public class ClueDocumentApp {
             }
 
 
-            System.out.print(t.getNormToken());
+            System.out.print(t.getNlpToken());
             System.out.print(" ");
 
             count --;
@@ -104,8 +105,8 @@ public class ClueDocumentApp {
 
             if(t.hasEntityAnnotation()){
                 System.out.print("\n[\n");
-                System.out.println("t.getCapToken() = " + t.getCapToken());
-                System.out.println("t.getNormToken() = " + t.getNormToken());
+                System.out.println("t.getIrToken() = " + t.getIrToken());
+                System.out.println("t.getNlpToken() = " + t.getNlpToken());
                 System.out.println("t.getEntityMentions() = " + t.getEntityMentions());
                 System.out.println("t.getEntityWikiTitles() = " + t.getEntityWikiTitles());
                 System.out.println("t.getEntityFreebaseMids() = " + t.getEntityFreebaseMids());

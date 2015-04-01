@@ -18,8 +18,14 @@ public class DocumentReader {
 
         ArrayList<ClueToken> tokens = new ArrayList<ClueToken>();
 
-        for(String line = filereader.readLine(); line != null && line.length()>0; line = filereader.readLine()){
-            tokens.add(lineToClueToken(line));
+        boolean startOfSentence = false;
+        for(String line = filereader.readLine(); line != null; line = filereader.readLine()){
+            if(line.length()==0){
+                startOfSentence = true;
+            }  else {
+                tokens.add(lineToClueToken(line, startOfSentence));
+                startOfSentence = false;
+            }
         }
 
         return tokens;
@@ -49,7 +55,7 @@ public class DocumentReader {
         return result;
     }
 
-    public static ClueToken lineToClueToken(String line){
+    public static ClueToken lineToClueToken(String line, boolean sentenceBoundary){
 //        String[] chunks = line.split("\\t\\t");
         String[] chunks = mysplit(line, "\t\t",7);
         if(chunks.length<2) {
@@ -57,7 +63,7 @@ public class DocumentReader {
         }
 
         if(noEntityAnnotation(chunks)) {
-            return new ClueToken(unescape(chunks[0]), unescape(chunks[1]));
+            return new ClueToken(unescape(chunks[0]), unescape(chunks[1]), sentenceBoundary);
         } else {
 
             List<String>[] chunkChunks = new List[5];
@@ -72,7 +78,8 @@ public class DocumentReader {
 
 
             return new ClueToken(unescape(chunks[0]), unescape(chunks[1]),
-                    chunkChunks[0], chunkChunks[1], chunkChunks[2], chunkChunks[3], chunkChunks[4]
+                    chunkChunks[0], chunkChunks[1], chunkChunks[2], chunkChunks[3], chunkChunks[4],
+                    sentenceBoundary
                     );
         }
     }
